@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NodaMoney" Version="1.0.0" />
     <PackageReference Include="Raven.Client" Version="4.0.0-alpha-40010" />
   </ItemGroup>
 

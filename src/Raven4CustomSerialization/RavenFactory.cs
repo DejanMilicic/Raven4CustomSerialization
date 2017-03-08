@@ -22,14 +22,6 @@ namespace Raven4CustomSerialization
 				return store;
 			});
 
-
-		private static JsonSerializer CreateSerializer()
-		{
-			JsonSerializer s = new JsonSerializer();
-			s.Converters.Add(new MoneyConverter());
-			return s;
-		}
-
 		private static IDocumentStore CreateStore()
 		{
 			var store = new DocumentStore
@@ -38,16 +30,13 @@ namespace Raven4CustomSerialization
 				DefaultDatabase = "ProofOfConcept",
 			};
 
+			/*
 			var doc = MultiDatabase.CreateDatabaseDocument("ProofOfConcept");
 			var cdo = new CreateDatabaseOperation(doc);
-			store.Admin.Server.SendAsync(cdo);
+			store.Admin.Server.SendAsync(cdo).Wait();
+			*/
 
-			store.Conventions.SerializeEntityToJsonStream = (entity, streamWriter) =>
-			{
-				JsonSerializer jsonSerializer = CreateSerializer();
-				jsonSerializer.Serialize(streamWriter, entity);
-				streamWriter.Flush();
-			};
+			store.Conventions.CustomizeJsonSerializer += serializer => serializer.Converters.Add(new JsonNodaMoneyConverter());
 
 			store.Initialize();
 
