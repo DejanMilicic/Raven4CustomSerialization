@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
-using NodaMoney;
 using System;
+using System.Reflection;
 
 namespace Raven4CustomSerialization
 {
-	public class JsonNodaMoneyConverter : JsonConverter
+	public class MoneyConverter : JsonConverter
 	{
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
-			var money = (Money)value;
+			var money = value as Money;
 
 			writer.WriteStartObject();
 			writer.WritePropertyName("Moneyz");

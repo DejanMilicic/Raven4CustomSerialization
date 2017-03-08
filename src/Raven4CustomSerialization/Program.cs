@@ -1,5 +1,4 @@
-﻿using NodaMoney;
-using System;
+﻿using System;
 
 namespace Raven4CustomSerialization
 {
@@ -12,7 +11,7 @@ namespace Raven4CustomSerialization
 			using (var session = RavenFactory.Store.OpenSession())
 			{
 				Transaction tran = new Transaction();
-				tran.Amount = new Money(555, "USD");
+				tran.Money = new Money { Amount = 10 };
 				session.Store(tran);
 				session.SaveChanges();
 			}

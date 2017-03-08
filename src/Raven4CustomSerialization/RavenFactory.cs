@@ -26,7 +26,7 @@ namespace Raven4CustomSerialization
 		private static JsonSerializer CreateSerializer()
 		{
 			JsonSerializer s = new JsonSerializer();
-			s.Converters.Add(new JsonNodaMoneyConverter());
+			s.Converters.Add(new MoneyConverter());
 			return s;
 		}
 
